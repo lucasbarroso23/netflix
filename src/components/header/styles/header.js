@@ -4,10 +4,13 @@ import { Link as ReactRouterLink } from "react-router-dom";
 export const Background = styled.div`
   display: flex;
   flex-direction: column;
-  background: url(${({ src }) => src ? `../images/misc/${src}.jpg` : "../images/misc/home-bg.jpg"}) top left / cover no-repeat;
+  background: url(${({ src }) =>
+      src ? `../images/misc/${src}.jpg` : "../images/misc/home-bg.jpg"})
+    top left / cover no-repeat;
 
   @media (max-width: 1100px) {
-    ${({ dontShowOnSmallViewPort }) => dontShowOnSmallViewPort && `background: none;`}
+    ${({ dontShowOnSmallViewPort }) =>
+      dontShowOnSmallViewPort && `background: none;`}
   }
 `;
 
@@ -81,7 +84,7 @@ export const Link = styled.p`
   color: white;
   text-decoration: none;
   margin-right: 30px;
-  font-weight: ${({ active }) => (active === 'true' ? '700' : 'normal')};
+  font-weight: ${({ active }) => (active === "true" ? "700" : "normal")};
   cursor: pointer;
 
   &:hover {
@@ -108,6 +111,15 @@ export const Group = styled.div`
   align-items: center;
 `;
 
+export const Picture = styled.button`
+  background: url(${({ src }) => src});
+  background-size: contain;
+  border: 0;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+`;
+
 export const Dropdown = styled.div`
   display: none;
   background-color: black;
@@ -116,6 +128,32 @@ export const Dropdown = styled.div`
   width: 100px;
   top: 32px;
   right: 10px;
+
+  ${Group}:last-of-type ${Link} {
+    cursor: pointer;
+  }
+
+  ${Group} {
+    margin-bottom: 10px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    ${Link}, ${Picture} {
+      cursor: default;
+    }
+  }
+
+  button {
+    margin-right: 10px;
+  }
+
+  p {
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
 `;
 
 export const Profile = styled.div`
@@ -132,13 +170,4 @@ export const Profile = styled.div`
     display: flex;
     flex-direction: column;
   }
-`;
-
-export const Picture = styled.button`
-  background: url(${({ src }) => src});
-  background-size: contain;
-  border: 0;
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
 `;
