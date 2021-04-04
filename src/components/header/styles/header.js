@@ -1,11 +1,11 @@
-import styled from "styled-components/macro";
-import { Link as ReactRouterLink } from "react-router-dom";
+import styled from 'styled-components/macro';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 export const Background = styled.div`
   display: flex;
   flex-direction: column;
   background: url(${({ src }) =>
-      src ? `../images/misc/${src}.jpg` : "../images/misc/home-bg.jpg"})
+      src ? `../images/misc/${src}.jpg` : '../images/misc/home-bg.jpg'})
     top left / cover no-repeat;
 
   @media (max-width: 1100px) {
@@ -84,7 +84,7 @@ export const Link = styled.p`
   color: white;
   text-decoration: none;
   margin-right: 30px;
-  font-weight: ${({ active }) => (active === "true" ? "700" : "normal")};
+  font-weight: ${({ active }) => (active === 'true' ? '700' : 'normal')};
   cursor: pointer;
 
   &:hover {
@@ -155,6 +155,24 @@ export const Dropdown = styled.div`
     margin-top: 0;
   }
 `;
+
+export const Search = styled.div`
+  display: flex;
+  align-items: center;
+
+  svg {
+    color: white;
+    cursor: pointer;
+  }
+
+  @media (max-width: 700px) {
+    display: none;
+  }
+`;
+
+export const SearchIcon = styled.button``;
+
+export const SearchInput = styled.input``;
 
 export const Profile = styled.div`
   display: flex;
