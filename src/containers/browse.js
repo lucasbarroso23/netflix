@@ -1,14 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
-import {FooterContainer} from './footer';
-import { SelectProfileContainer } from './profiles';
-import { FirebaseContext } from '../context/firebase';
-import { Card, Header, Loading, Player } from '../components';
-import * as ROUTES from '../constants/routes';
-import logo from '../logo.svg';
+import React, { useContext, useEffect, useState } from "react";
+import Fuse from "fuse.js";
+import { FooterContainer } from "./footer";
+import { SelectProfileContainer } from "./profiles";
+import { FirebaseContext } from "../context/firebase";
+import { Card, Header, Loading, Player } from "../components";
+import * as ROUTES from "../constants/routes";
+import logo from "../logo.svg";
 
 export function BrowseContainer({ slides }) {
-  const [category, setCategory] = useState('series');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [category, setCategory] = useState("series");
+  const [searchTerm, setSearchTerm] = useState("");
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
   const [slideRows, setSlideRows] = useState([]);
@@ -27,23 +28,38 @@ export function BrowseContainer({ slides }) {
     setSlideRows(slides[category]);
   }, [slides, category]);
 
+  useEffect(() => {
+    const fuse = new Fuse(slideRows, {
+      keys: ["data.description", "data.title", "data.genre"],
+    });
+
+    const results = fuse.search(searchTerm).map(({ item }) => item);
+
+    if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+      setSlideRows(results);
+    } else {
+      setSlideRows(slides[category]);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm]);
+
   return profile.displayName ? (
     <>
       {loading ? <Loading src={user.photoURL} /> : <Loading.ReleaseBody />}
 
-      <Header src='joker1' dontShowOnSmallViewPort>
+      <Header src="joker1" dontShowOnSmallViewPort>
         <Header.Frame>
           <Header.Group>
-            <Header.Logo to={ROUTES.HOME} src={logo} alt='Netflix' />
+            <Header.Logo to={ROUTES.HOME} src={logo} alt="Netflix" />
             <Header.TextLink
-              active={category === 'series' ? 'true' : 'false'}
-              onClick={() => setCategory('series')}
+              active={category === "series" ? "true" : "false"}
+              onClick={() => setCategory("series")}
             >
               Series
             </Header.TextLink>
             <Header.TextLink
-              active={category === 'films' ? 'true' : 'false'}
-              onClick={() => setCategory('films')}
+              active={category === "films" ? "true" : "false"}
+              onClick={() => setCategory("films")}
             >
               Films
             </Header.TextLink>
