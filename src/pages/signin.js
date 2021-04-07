@@ -36,12 +36,12 @@ export default function Signin() {
     <>
       <HeaderContainer>
         <Form>
-          <Form.Title>Sign in</Form.Title>
+          <Form.Title>Sign In</Form.Title>
           {error && <Form.Error>{error}</Form.Error>}
 
           <Form.Base onSubmit={handleSignin} method="POST">
             <Form.Input
-              placeholder="Email Adress"
+              placeholder="Email Address"
               value={emailAdress}
               onChange={({ target }) => setEmailAdress(target.value)}
             />
