@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> render <Header /> with populated values 1`] = `
+<div
+  class="header__Background-djltcn-0 lglpeb"
+  data-testid="header-bg"
+>
+  <div
+    class="header__Container-djltcn-1 gnNVjt"
+  >
+    <p
+      class="header__Link-djltcn-6 hdYwTX"
+    >
+      Hello I am a link!
+    </p>
+  </div>
+</div>
+`;
