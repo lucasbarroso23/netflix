@@ -1,4 +1,4 @@
-import { selectionFilter } from '../../utils';
+import selectionFilter from '../../utils/selection-filter';
 
 test('selectionFilter with legitimate data', () => {
   const series = [
